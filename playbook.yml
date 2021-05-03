@@ -5,7 +5,7 @@
   tasks: 
            
     - name: install nginx 
-      yum:
+      apt:
         name: vim
         state: latest
 
