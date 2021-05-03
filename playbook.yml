@@ -4,13 +4,18 @@
   become: true
   tasks:        
 
-    - name: latest package installs
+    # - name: latest package installs
+    #   yum:
+    #     name:
+    #       - vim
+    #       - git
+    #       - nginx
+    #     state: latest
+
+    - name: install git 
       yum:
-        name:
-          - vim
-          - git
-          - nginx
-        state: latest
+        name: git
+      state: latest
 
     # - name: start nginx server
     #   service:
