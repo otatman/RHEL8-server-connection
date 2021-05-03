@@ -6,7 +6,7 @@
     - myMessage: "This is a simple webpage hosted on nginx"
   tasks: 
            
-    - name: install nginx 
+    - name: install software packages  
       yum:
         name: 
           - vim
@@ -20,10 +20,22 @@
         state: started
       become: true
 
+    - name: copy nginx config file
+      file:
+        src: ./nginx-files/nginx.conf
+        dest: /etc/nginx/sites-available/default 
+
+    - name: enable configuration
+      file:
+        dest: /etc/nginx/sites-enabled/default
+        src: /etc/nginx/sites-available/default
+        state: link
+
     - name: index.html copy
       template:
         src: ./nginx-files/index.html.j2
         dest: /usr/share/nginx/html/index.html
+        mode: 0644
 
 
     # - name: create www directory
