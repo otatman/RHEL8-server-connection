@@ -24,6 +24,7 @@
       file:
         src: ./nginx-files/nginx.conf
         dest: /etc/nginx/sites-available/default 
+        state: link
 
     - name: enable configuration
       file:
