@@ -2,20 +2,12 @@
 - name: create hpmepage and install of software packages  
   hosts: all
   become: true
-  tasks:        
-
-    # - name: latest package installs
-    #   yum:
-    #     name:
-    #       - vim
-    #       - git
-    #       - nginx
-    #     state: latest
-
+  tasks: 
+           
     - name: install git 
       yum:
         name: git
-      state: latest
+        state: latest
 
     # - name: start nginx server
     #   service:
