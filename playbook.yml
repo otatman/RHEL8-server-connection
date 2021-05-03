@@ -27,7 +27,7 @@
 
     - name: allow access to port 453
       firewalld:
-        port: 453
+        port: 453/tcp
         zone: public
         state: enabled
 
