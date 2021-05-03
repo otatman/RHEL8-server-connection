@@ -26,7 +26,7 @@
          dest: /usr/share/nginx/html/index.html
 
     - name: allow access to port 453
-      ansible.posix.firewalld:
+      firewalld:
         port: 453/tcp
         zone: public
         state: enabled
