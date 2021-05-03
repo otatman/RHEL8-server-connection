@@ -1,0 +1,31 @@
+---
+- name: create hpmepage and install of software packages  
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: latest package installs
+      yum:
+        name:
+          - vim
+          - git
+          - nginx
+        state: latest
+
+    - name: start nginx server
+      service:
+        name: nginx
+        enabled: true
+        state: started
+
+    - name: add nginx config file
+      copy:
+        src: etc/nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        content: "hello welcome to the webpage"
+
+
+      
+
