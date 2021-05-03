@@ -6,7 +6,7 @@
            
     - name: install nginx 
       yum:
-        name: nginx
+        name: vim
         state: latest
 
     # - name: start nginx server
