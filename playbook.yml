@@ -12,11 +12,11 @@
           - git 
         state: present
 
-    # - name: start nginx server
-    #   service:
-    #     name: nginx
-    #     state: started
-    #   become: true
+    - name: start nginx server
+      service:
+        name: nginx
+        state: started
+      become: true
 
     # - name: add nginx config file
     #   copy:
