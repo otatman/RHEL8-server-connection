@@ -25,11 +25,11 @@
          src: ./nginx-files/index.html.j2
          dest: /usr/share/nginx/html/index.html
 
-    - name: allow access to port 453
-      firewalld:
-        port: 453/tcp
-        zone: public
-        state: enabled
+    # - name: allow access to port 453
+    #   firewalld:
+    #     port: 453/tcp
+    #     zone: public
+    #     state: enabled
 
     # - name: copy nginx config file
     #   file:
