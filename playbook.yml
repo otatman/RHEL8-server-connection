@@ -22,9 +22,9 @@
     
     - name: insert index page
       template: 
-         src: index.html
+         src: ./nginx-files/index.html.j2
          dest: /usr/share/nginx/html/index.html
-         
+
     # - name: copy nginx config file
     #   file:
     #     src: /nginx-files/nginx.conf
