@@ -3,7 +3,7 @@
   hosts: all
   become: true
   vars:
-    - MyMessage: "This is a simple webpage hosted on nginx"
+    - myMessage: "This is a simple webpage hosted on nginx"
   tasks: 
            
     - name: install nginx 
