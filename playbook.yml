@@ -20,7 +20,6 @@
 
     - name: add nginx config file
       copy:
-        src: etc/nginx/nginx.conf
         dest: /etc/nginx/nginx.conf
         content: "hello welcome to the webpage"
 
