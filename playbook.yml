@@ -19,24 +19,29 @@
         name: nginx
         state: started
       become: true
+    
+    - name: insert index page
+      template: 
+         src: index.html
+         dest: /usr/share/nginx/html/index.html
+         
+    # - name: copy nginx config file
+    #   file:
+    #     src: /nginx-files/nginx.conf
+    #     dest: /etc/nginx/sites-available/default 
+    #     state: link
 
-    - name: copy nginx config file
-      file:
-        src: /nginx-files/nginx.conf
-        dest: /etc/nginx/sites-available/default 
-        state: link
+    # - name: enable configuration
+    #   file:
+    #     dest: /etc/nginx/sites-enabled/default
+    #     src: /etc/nginx/sites-available/default
+    #     state: link
 
-    - name: enable configuration
-      file:
-        dest: /etc/nginx/sites-enabled/default
-        src: /etc/nginx/sites-available/default
-        state: link
-
-    - name: index.html copy
-      template:
-        src: ./nginx-files/index.html.j2
-        dest: /usr/share/nginx/html/index.html
-        mode: 0644
+    # - name: index.html copy
+    #   template:
+    #     src: ./nginx-files/index.html.j2
+    #     dest: /usr/share/nginx/html/index.html
+    #     mode: 0644
 
 
     # - name: create www directory
