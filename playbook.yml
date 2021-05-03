@@ -2,6 +2,8 @@
 - name: create hpmepage and install of software packages  
   hosts: all
   become: true
+  vars:
+    - MyMessage: "This is a simple webpage hosted on nginx"
   tasks: 
            
     - name: install nginx 
@@ -18,10 +20,16 @@
         state: started
       become: true
 
-    - name: add nginx config file
-      copy:
-        dest: /etc/nginx/nginx.conf
-        content: "hello welcome to the webpage"
+    - name: index.html copy
+      template:
+        src: ./nginx-files/index.html.j2
+        dest: /usr/share/nginx/html/index.html
+
+
+    # - name: create www directory
+    #   file:
+    #     path: /var
+    #     content: "hello welcome to the webpage"
 
 
       
