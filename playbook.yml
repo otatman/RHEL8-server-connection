@@ -15,11 +15,17 @@
           - git 
         state: latest
 
-    - name: start nginx server
-      service:
-        name: nginx
-        state: started 
-      become: true
+    - name: "allow access to port {{ port_num }}"
+      firewalld:
+        port: "{{ port_num }}/tcp"
+        zone: public
+        state: enabled
+
+    # - name: start nginx server
+    #   service:
+    #     name: nginx
+    #     state: started 
+    #   become: true
     
     - name: insert index page into standard nginx dir
       template: 
@@ -33,11 +39,6 @@
         dest: /etc/nginx/nginx.conf
       notify: restart nginx
 
-    - name: "allow access to port {{ port_num }}"
-      firewalld:
-        port: "{{ port_num }}/tcp"
-        zone: public
-        state: enabled
   
   handlers:
     - name: restart nginx
