@@ -4,6 +4,7 @@
   become: true
   vars:
     - myMessage: "This is a simple webpage hosted on nginx"
+    - port_num: 8009
   tasks: 
            
     - name: install software packages  
@@ -20,14 +21,19 @@
         state: restarted
       become: true
     
-    - name: insert index page
+    - name: insert index page into standard nginx dir
       template: 
-         src: ./nginx-files/index.html.j2
-         dest: /usr/share/nginx/html/index.html
+        src: ./nginx-files/index.html.j2
+        dest: /usr/share/nginx/html/index.html
 
-    - name: allow access to port 453
+    - name: insert conf file is in standard nginx dir
+      template:
+        src: ./nginx-files/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+
+    - name: "allow access to port {{ port_num }}"
       firewalld:
-        port: 8009/tcp
+        port: "{{ port_num }}/tcp"
         zone: public
         state: enabled
 
