@@ -21,11 +21,11 @@
         zone: public
         state: enabled
 
-    - name: start nginx server
-      service:
-        name: nginx
-        state: started 
-      become: true
+    # - name: start nginx server
+    #   service:
+    #     name: nginx
+    #     state: started 
+    #   become: true
     
     - name: insert index page into standard nginx dir
       template: 
