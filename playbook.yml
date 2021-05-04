@@ -13,29 +13,38 @@
           - vim
           - nginx
           - git 
-        state: present
+        state: latest
 
     - name: start nginx server
       service:
         name: nginx
-        state: restarted
+        state: started 
       become: true
     
     - name: insert index page into standard nginx dir
       template: 
         src: ./nginx-files/index.html.j2
         dest: /usr/share/nginx/html/index.html
+      notify: restart nginx
 
     - name: insert conf file is in standard nginx dir
       template:
         src: ./nginx-files/nginx.conf.j2
         dest: /etc/nginx/nginx.conf
+      notify: restart nginx
 
     - name: "allow access to port {{ port_num }}"
       firewalld:
         port: "{{ port_num }}/tcp"
         zone: public
         state: enabled
+  
+  handlers:
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        enabled: yes
+        state: restarted
 
     
 
